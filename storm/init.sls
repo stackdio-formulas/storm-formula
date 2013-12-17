@@ -1,5 +1,5 @@
 
-{% set storm_prefix = '/usr/lib/storm-' + pillar.storm.version %}
+{% set storm_install_path = '/usr/lib/storm-' + pillar.storm.version %}
 {% set java_home = '/etc/alternatives/java_sdk_1.6.0' %}
 
 # dependencies
@@ -67,15 +67,25 @@ storm_install:
     - user: root
     - group: root
     - cwd: /usr/lib
-    - unless: test -d {{ storm_prefix }}
+    - unless: test -d {{ storm_install_path }}
     - require:
       - user: storm
       - cmd: jzmq_build
 
+storm_alternatives:
+  alternatives
+    - install
+    - name: storm
+    - link: /usr/lib/storm
+    - path: {{ storm_install_path }}
+    - priority: 30
+    - require:
+      - cmd.run: storm_install
+
 storm_permissions:
   file:
     - directory
-    - name: {{ storm_prefix }}
+    - name: {{ storm_install_path }}
     - user: root
     - group: root
     - recurse:
