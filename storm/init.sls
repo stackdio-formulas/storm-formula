@@ -68,16 +68,9 @@ storm_install:
     - group: root
     - cwd: /usr/lib
     - unless: test -d {{ storm_prefix }}
-
-storm_alternatives_link:
-  alternatives:
-    - install
-    - name: storm
-    - link: /usr/lib/storm
-    - path: {{ storm_prefix }}
-    - priority: 30
     - require:
-      - cmd: storm_install
+      - user: storm
+      - cmd: jzmq_build
 
 storm_permissions:
   file:
@@ -88,6 +81,8 @@ storm_permissions:
     - recurse:
       - user
       - group
+    - require:
+      - cmd: storm_install
 
 /etc/storm:
   file:
@@ -120,3 +115,7 @@ storm_upstart:
     - file_mode: 644
     - user: root
     - group: root
+    - require:
+      - file: storm_permissions
+      - file: /etc/storm/conf
+      - file: {{ pillar.storm.local_dir }}

@@ -1,19 +1,14 @@
 include:
   - storm
 
-#start_nimbus:
-#  cmd:
-#    - run
-#    - name: 'bin/storm nimbus'
-#    - user: storm
-#    - group: storm
-#    - cwd: /usr/lib/storm
-#
-#start_ui:
-#  cmd:
-#    - run
-#    - name: 'bin/storm ui'
-#    - user: storm
-#    - group: storm
-#    - cwd: /usr/lib/storm
+storm-nimbus:
+  service:
+    - running
+    - require:
+      - file: storm_upstart
 
+storm-ui:
+  service:
+    - running
+    - require:
+      - file: storm_upstart
