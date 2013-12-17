@@ -16,16 +16,16 @@ storm_deps:
 jzmq_cleanup:
   cmd:
     - run
-    - name: 'rm -rf /tmp/jzmq'
+    - name: 'rm -rf /tmp/jzmq && mkdir /tmp/jzmq'
     - require:
       - pkg: storm_deps
 
 jzmq_clone:
   cmd:
     - run
-    - name: 'git clone https://github.com/nathanmarz/jzmq'
+    - name: 'git clone https://github.com/nathanmarz/jzmq .'
     - unless: test -f /usr/local/lib/libjzmq.a
-    - cwd: /tmp
+    - cwd: /tmp/jzmq
     - user: root
     - group: root
     - require:
