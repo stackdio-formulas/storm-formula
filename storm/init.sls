@@ -12,6 +12,26 @@ storm_deps:
       - java-1.6.0-openjdk-devel
       - unzip
 
+jzmq_clone:
+  cmd:
+    - run
+    - name: curl 'git clone https://github.com/nathanmarz/jzmq'
+    - cwd: /tmp
+    - user: root
+    - group: root
+    - require:
+      - pkg: storm_deps
+
+jzmq_build:
+  cmd:
+    - run
+    - name: 'JAVA_HOME={{ java_home }} ./autogen.sh && ./configure && make && make install'
+    - cwd: /tmp/jzmq
+    - user: root
+    - group: root
+    - require:
+      - cmd: jzmq_clone
+
 # user/group
 storm_group:
   group:
