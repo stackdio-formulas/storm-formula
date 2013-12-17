@@ -1,46 +1,65 @@
 
 {% set storm_prefix = pillar.storm.pkg.prefix + pillar.storm.version %}
-{% set storm_user = pillar.storm.user %}
-{% set storm_group = pillar.storm.group %}
 
 # user/group
-{{ storm_group }}:
+storm_group:
   group:
     - present
+    - name: storm
 
-{{ storm_user }}:
+storm_user:
   user:
     - present
+    - name: storm
     - shell: /bin/bash
     - createhome: true
     - groups:
-      - {{ storm_group }}
+      - storm
     - require:
-      - group: {{ storm_group }}
+      - group: storm_group
 
-# prep
-{{ storm_prefix }}:
+# download
+storm_install:
+  cmd:
+    - run
+    - name: curl '{{ pillar.storm.pkg.url }}' | tar xz
+    - user: root
+    - group: root
+    - cwd: /usr/lib
+    - unless: test -d {{ storm_prefix }}
+
+storm_home_link:
+  alternatives:
+    - install
+    - link: /usr/lib/storm
+    - path: {{ storm_prefix }}
+    - priority: 30
+    - require:
+      - cmd: storm_install
+
+{{ storm_prefix }}
   file:
-    - directory
-    - clean: true
-    - user: {{ storm_user }}
-    - group: {{ storm_group }}
+    - directory:
+    - user: root
+    - group: root
     - recurse:
       - user
       - group
-    - require:
-      - user: {{ storm_user }}
-      - group: {{ storm_group }}
 
-# download
-/tmp/storm-{{ pillar.storm.version }}.tar.gz:
+/etc/storm:
   file:
-    - managed
-    - source: {{ pillar.storm.pkg.url }}
-    - source_hash: {{ pillar.storm.pkg.hash }}
+    - directory
+    - user: root
+    - group: root
+    - mode: 755
 
-# extract
+/etc/storm/conf:
+  file:
+    - recurse
+    - source: salt://storm/conf
+    - template: jinja
+    - file_mode: 644
+    - user: root
+    - group: root
 
-# symlink
 
-# conf
