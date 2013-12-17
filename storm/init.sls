@@ -7,6 +7,8 @@ storm_deps:
     - installed
     - pkgs:
       - zeromq
+      - zeromq-devel
+      - java-1.6.0-openjdk
       - unzip
 
 # user/group
