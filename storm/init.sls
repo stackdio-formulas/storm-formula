@@ -24,6 +24,7 @@ jzmq_clone:
   cmd:
     - run
     - name: 'git clone https://github.com/nathanmarz/jzmq'
+    - unless: test -f /usr/local/lib/libjzmq.a
     - cwd: /tmp
     - user: root
     - group: root
@@ -34,6 +35,7 @@ jzmq_build:
   cmd:
     - run
     - name: 'export JAVA_HOME={{ java_home }} && ./autogen.sh && ./configure && make && make install'
+    - unless: test -f /usr/local/lib/libjzmq.a
     - cwd: /tmp/jzmq
     - user: root
     - group: root
