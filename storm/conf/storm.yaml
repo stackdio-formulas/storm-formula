@@ -1,0 +1,10 @@
+{% set nimbus = salt['publish.publish']('G@stack_id:' ~ grains.stack_id ~ ' and G@roles:storm.nimbus', 'grains.get', 'fqdn', 'compound').values()|first() %}
+{% set zookeepers = salt['publish.publish']('G@stack_id:' ~ grains.stack_id ~ ' and G@roles:cdh4.zookeeper', 'grains.get', 'fqdn', 'compound').values() %}
+
+{% if zookeepers %}
+storm.zookeeper.servers:
+{% for fqdn in zookeepers %}
+  - {{ fqdn }}
+{% endfor %}
+
+nimbus.host: {{ nimbus_fqdn }}
