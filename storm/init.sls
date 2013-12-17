@@ -9,6 +9,7 @@ storm_deps:
       - zeromq
       - zeromq-devel
       - java-1.6.0-openjdk
+      - java-1.6.0-openjdk-devel
       - unzip
 
 # user/group
