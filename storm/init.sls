@@ -115,7 +115,8 @@ storm_permissions:
 storm_upstart:
   file:
     - recurse
-    - source: salt://storm/etc
+    - name: /etc/init
+    - source: salt://storm/etc/init
     - file_mode: 644
     - user: root
     - group: root
