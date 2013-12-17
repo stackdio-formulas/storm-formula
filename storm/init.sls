@@ -111,3 +111,11 @@ storm_permissions:
     - user: root
     - group: root
     - dir_mode: 755
+
+storm_upstart:
+  file:
+    - recurse
+    - source: salt://storm/etc
+    - file_mode: 644
+    - user: root
+    - group: root
