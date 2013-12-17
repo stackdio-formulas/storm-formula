@@ -13,6 +13,13 @@ storm_deps:
       - java-1.6.0-openjdk-devel
       - unzip
 
+jzmq_cleanup:
+  cmd:
+    - run
+    - name: 'rm -rf /tmp/jzmq'
+    - require:
+      - pkg: storm_deps
+
 jzmq_clone:
   cmd:
     - run
@@ -21,7 +28,7 @@ jzmq_clone:
     - user: root
     - group: root
     - require:
-      - pkg: storm_deps
+      - pkg: jzmq_cleanup
 
 jzmq_build:
   cmd:
