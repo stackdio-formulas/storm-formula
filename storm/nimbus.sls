@@ -12,3 +12,9 @@ storm-ui:
     - running
     - require:
       - file: storm_upstart
+
+storm-logviewer:
+  service:
+    - running
+    - require:
+      - file: storm_upstart
