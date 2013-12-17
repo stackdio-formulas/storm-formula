@@ -28,9 +28,10 @@ storm_install:
     - cwd: /usr/lib
     - unless: test -d {{ storm_prefix }}
 
-storm_home_link:
+storm_alternatives_link:
   alternatives:
     - install
+    - name: storm
     - link: /usr/lib/storm
     - path: {{ storm_prefix }}
     - priority: 30
