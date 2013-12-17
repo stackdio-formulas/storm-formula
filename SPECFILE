@@ -19,4 +19,12 @@ components:
     sls_path: storm.supervisor
 pillar_defaults:
   storm:
-    todo: foo
+    version: 0.9.0.1
+    user: storm
+    group: storm
+    pkg:
+      url: https://dl.dropboxusercontent.com/s/tqdpoif32gufapo/storm-0.9.0.1.tar.gz
+      hash: 044a68eea9186fc3e7afd1314aeb28ab
+      prefix: /usr/lib
+      symlink: /usr/lib/storm
+      conf: /etc/storm/conf
