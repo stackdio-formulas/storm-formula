@@ -9,7 +9,7 @@
 
 title: Storm Salt Formula
 description: Salt formula for installing components of Storm
-root_path: accumulo
+root_path: storm
 components:
   - title: Storm Nimbus Node
     description: Provisions machines as a Storm Nimbus machine.
