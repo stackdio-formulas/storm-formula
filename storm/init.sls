@@ -16,7 +16,7 @@ storm_deps:
 jzmq_clone:
   cmd:
     - run
-    - name: curl 'git clone https://github.com/nathanmarz/jzmq'
+    - name: 'git clone https://github.com/nathanmarz/jzmq'
     - cwd: /tmp
     - user: root
     - group: root
