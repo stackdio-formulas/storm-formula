@@ -1,0 +1,22 @@
+##
+# Dependencies:
+#
+# cdh4-formula: https://github.com/stackdio-formulas/cdh4-formula
+#   - cdh4.zookeeper
+# jdk6-formula: https://github.com/stackdio-formulas/jdk6-formula
+#   - jdk6
+##
+
+title: Storm Salt Formula
+description: Salt formula for installing components of Storm
+root_path: accumulo
+components:
+  - title: Storm Nimbus Node
+    description: Provisions machines as a Storm Nimbus machine.
+    sls_path: storm.nimbus
+  - title: Storm Supervisor Node
+    description: Provisions machines as a Storm Supervisor machine.
+    sls_path: storm.supervisor
+pillar_defaults:
+  storm:
+    todo: foo
