@@ -28,7 +28,7 @@ jzmq_clone:
     - user: root
     - group: root
     - require:
-      - pkg: jzmq_cleanup
+      - cmd: jzmq_cleanup
 
 jzmq_build:
   cmd:
