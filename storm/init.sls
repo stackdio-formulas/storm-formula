@@ -33,7 +33,7 @@ jzmq_clone:
 jzmq_build:
   cmd:
     - run
-    - name: 'JAVA_HOME={{ java_home }} ./autogen.sh && ./configure && make && make install'
+    - name: 'export JAVA_HOME={{ java_home }} && ./autogen.sh && ./configure && make && make install'
     - cwd: /tmp/jzmq
     - user: root
     - group: root
