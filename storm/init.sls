@@ -1,7 +1,7 @@
 
 {% set storm_prefix = pillar.storm.pkg.prefix + pillar.storm.version %}
-{% set storm_user = pillar.storm.user }}
-{% set storm_group = pillar.storm.group }}
+{% set storm_user = pillar.storm.user %}
+{% set storm_group = pillar.storm.group %}
 
 # user/group
 {{ storm_group }}:
