@@ -105,3 +105,9 @@ storm_permissions:
     - user: root
     - group: root
 
+{{ pillar.storm.local_dir }}:
+  file:
+    - directory
+    - user: root
+    - group: root
+    - dir_mode: 755

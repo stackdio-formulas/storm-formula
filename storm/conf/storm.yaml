@@ -9,3 +9,5 @@ storm.zookeeper.servers:
 {% endif %}
 
 nimbus.host: {{ nimbus_host }}
+
+storm.local.dir: {{ pillar.storm.local_dir }}
