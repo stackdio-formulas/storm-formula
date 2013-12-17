@@ -6,5 +6,6 @@ storm.zookeeper.servers:
 {% for fqdn in zookeepers %}
   - {{ fqdn }}
 {% endfor %}
+{% endif %}
 
 nimbus.host: {{ nimbus_fqdn }}
