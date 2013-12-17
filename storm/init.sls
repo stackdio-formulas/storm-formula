@@ -39,7 +39,7 @@ storm_home_link:
 
 storm_permissions:
   file:
-    - directory:
+    - directory
     - name: {{ storm_prefix }}
     - user: root
     - group: root
