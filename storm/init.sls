@@ -1,6 +1,14 @@
 
 {% set storm_prefix = '/usr/lib/storm-' + pillar.storm.version %}
 
+# dependencies
+storm_deps:
+  pkg:
+    - installed
+    - pkgs:
+      - zeromq
+      - unzip
+
 # user/group
 storm_group:
   group:
@@ -63,5 +71,4 @@ storm_permissions:
     - file_mode: 644
     - user: root
     - group: root
-
 
