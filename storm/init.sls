@@ -73,7 +73,7 @@ storm_install:
       - cmd: jzmq_build
 
 storm_alternatives:
-  alternatives
+  alternatives:
     - install
     - name: storm
     - link: /usr/lib/storm
