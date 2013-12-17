@@ -1,5 +1,6 @@
 
 {% set storm_prefix = '/usr/lib/storm-' + pillar.storm.version %}
+{% set java_home = '/etc/alternatives/java_sdk_1.6.0' %}
 
 # dependencies
 storm_deps:
