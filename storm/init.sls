@@ -84,18 +84,6 @@ storm_permissions:
     - require:
       - cmd: storm_install
 
-storm_logs_permissions:
-  file:
-    - directory
-    - name: {{ storm_prefix }}/logs
-    - user: storm
-    - group: storm
-    - recurse:
-      - user
-      - group
-    - require:
-      - cmd: storm_install
-
 /etc/storm:
   file:
     - directory
@@ -115,8 +103,8 @@ storm_logs_permissions:
 {{ pillar.storm.local_dir }}:
   file:
     - directory
-    - user: storm
-    - group: storm
+    - user: root
+    - group: root
     - dir_mode: 755
 
 storm_upstart:
@@ -129,6 +117,5 @@ storm_upstart:
     - group: root
     - require:
       - file: storm_permissions
-      - file: storm_logs_permissions
       - file: /etc/storm/conf
       - file: {{ pillar.storm.local_dir }}
