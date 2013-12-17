@@ -1,5 +1,5 @@
 
-{% set storm_prefix = pillar.storm.pkg.prefix + pillar.storm.version %}
+{% set storm_prefix = '/usr/lib/storm-' + pillar.storm.version %}
 
 # user/group
 storm_group:
@@ -22,7 +22,7 @@ storm_user:
 storm_install:
   cmd:
     - run
-    - name: curl '{{ pillar.storm.pkg.url }}' | tar xz
+    - name: curl '{{ pillar.storm.pkg_url }}' | tar xz
     - user: root
     - group: root
     - cwd: /usr/lib
@@ -37,9 +37,10 @@ storm_home_link:
     - require:
       - cmd: storm_install
 
-{{ storm_prefix }}
+storm_permissions:
   file:
     - directory:
+    - name: {{ storm_prefix }}
     - user: root
     - group: root
     - recurse:
