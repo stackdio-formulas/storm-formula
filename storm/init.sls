@@ -110,6 +110,15 @@ storm_permissions:
     - user: root
     - group: root
 
+# link up the conf
+storm_conf_symlink:
+  file:
+    - symlink
+    - name: {{ storm_install_path }}/conf
+    - force: true
+    - require:
+      - file: /etc/storm/conf
+
 {{ pillar.storm.local_dir }}:
   file:
     - directory
