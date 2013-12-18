@@ -115,6 +115,7 @@ storm_conf_symlink:
   file:
     - symlink
     - name: {{ storm_install_path }}/conf
+    - target: /etc/storm/conf
     - force: true
     - require:
       - file: /etc/storm/conf
