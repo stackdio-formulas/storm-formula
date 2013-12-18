@@ -6,3 +6,5 @@ storm-supervisor:
     - running
     - require:
       - file: storm_upstart
+    - watch:
+      - file: /etc/storm/conf
