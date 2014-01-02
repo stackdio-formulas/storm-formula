@@ -1,13 +1,34 @@
 {% set nimbus_host = salt['publish.publish']('G@stack_id:' ~ grains.stack_id ~ ' and G@roles:storm.nimbus', 'grains.get', 'fqdn', 'compound').values()|first() %}
 {% set zookeeper_hosts = salt['publish.publish']('G@stack_id:' ~ grains.stack_id ~ ' and G@roles:cdh4.zookeeper', 'grains.get', 'fqdn', 'compound').values() %}
-
+nimbus.task.launch.secs: 1800
+nimbus.supervisor.timeout.secs: 180
+nimbus.task.timeout.secs: 300
+supervisor.worker.start.timeout.secs: 1800
+supervisor.worker.timeout.secs: 300
+supervisor.monitor.frequency.secs: 300
+nimbus.file.copy.expiration.secs: 1800
+nimbus.monitor.freq.secs: 180
+supervisor.slots.ports:
+  - 6700
+  - 6701
+  - 6702
+  - 6703
+  - 6704
+  - 6705
+  - 6706
+  - 6707
+topology.max.task.parallelism: 10000
+storm.zookeeper.session.timeout: 200000
+storm.zookeeper.connection.timeout: 150000
+storm.zookeeper.retry.interval: 10000
+supervisor.heartbeat.frequency.secs: 20
+task.heartbeat.frequency.secs: 20
+worker.heartbeat.frequency.secs: 20
 {% if zookeeper_hosts %}
 storm.zookeeper.servers:
 {% for host in zookeeper_hosts %}
   - {{ host}}
 {% endfor %}
 {% endif %}
-
 nimbus.host: {{ nimbus_host }}
-
 storm.local.dir: {{ pillar.storm.local_dir }}
