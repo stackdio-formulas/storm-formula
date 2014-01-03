@@ -1,10 +1,10 @@
-{% set nimbus_host = salt['publish.publish']('G@stack_id:' ~ grains.stack_id ~ ' and G@roles:storm.nimbus', 'grains.get', 'fqdn', 'compound').values()|first() %}
-{% set zookeeper_hosts = salt['publish.publish']('G@stack_id:' ~ grains.stack_id ~ ' and G@roles:cdh4.zookeeper', 'grains.get', 'fqdn', 'compound').values() %}
+{% set nimbus_host = salt['mine.get']('G@stack_id:' ~ grains.stack_id ~ ' and G@roles:storm.nimbus', 'grains.items', 'compound').values()[0]['fqdn'] %}
+{% set zookeeper_hosts = salt['mine.get']('G@stack_id:' ~ grains.stack_id ~ ' and G@roles:cdh4.zookeeper', 'grains.items', 'compound').values() %}
 
 {% if zookeeper_hosts %}
 storm.zookeeper.servers:
-{% for host in zookeeper_hosts %}
-  - {{ host}}
+{% for host_items in zookeeper_hosts %}
+  - {{ host_items['fqdn'] }}
 {% endfor %}
 {% endif %}
 
