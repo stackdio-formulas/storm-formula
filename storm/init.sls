@@ -63,7 +63,7 @@ storm_user:
 storm_install:
   cmd:
     - run
-    - name: curl '{{ pillar.storm.pkg_url }}' | tar xz
+    - name: curl -L '{{ pillar.storm.pkg_url }}' | {{ pillar.storm.extractor }}
     - user: root
     - group: root
     - cwd: /usr/lib

@@ -21,4 +21,5 @@ pillar_defaults:
   storm:
     version: 0.9.0.1
     pkg_url: https://dl.dropboxusercontent.com/s/tqdpoif32gufapo/storm-0.9.0.1.tar.gz
+    extractor: tar xz
     local_dir: /mnt/storm
