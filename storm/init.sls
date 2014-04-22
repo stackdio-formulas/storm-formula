@@ -1,5 +1,5 @@
 {% set storm_install_path = '/usr/lib/storm-' + pillar.storm.version %}
-{% set java_home = '/etc/alternatives/java_sdk_1.6.0' %}
+{% set java_home = '/usr/java/default' %}
 
 # dependencies
 storm_deps:
@@ -8,8 +8,6 @@ storm_deps:
     - pkgs:
       - zeromq
       - zeromq-devel
-      - java-1.6.0-openjdk
-      - java-1.6.0-openjdk-devel
       - unzip
 
 jzmq_cleanup:

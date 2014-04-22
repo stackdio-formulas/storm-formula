@@ -17,7 +17,10 @@ supervisor.slots.ports:
   - 6705
   - 6706
   - 6707
+  - 6708
+  - 6709
 topology.max.task.parallelism: 10000
+topology.message.timeout.secs: 300
 storm.zookeeper.session.timeout: 200000
 storm.zookeeper.connection.timeout: 150000
 storm.zookeeper.retry.interval: 10000
