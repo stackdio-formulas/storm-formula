@@ -1,4 +1,3 @@
-
 {% set storm_install_path = '/usr/lib/storm-' + pillar.storm.version %}
 {% set java_home = '/etc/alternatives/java_sdk_1.6.0' %}
 
@@ -80,7 +79,7 @@ storm_alternatives:
     - path: {{ storm_install_path }}
     - priority: 30
     - require:
-      - cmd.run: storm_install
+      - cmd: storm_install
 
 storm_permissions:
   file:
